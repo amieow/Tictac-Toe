@@ -1,5 +1,4 @@
 
-import Hero from '@/component/hero'
 import './globals.css'
 export const metadata = {
   title: 'Create Next App',
@@ -15,7 +14,6 @@ export default function RootLayout({
     <html lang="en">
       
       <body >
-        <Hero/>
         {children}
         </body>
     </html>
