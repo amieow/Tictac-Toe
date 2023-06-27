@@ -79,7 +79,7 @@ function Calculator() {
         resultDisplay: resultDisplay,
         result: hasil,
       };
-      recent.push(arrays);
+      recent.unshift(arrays);
 
       setOutput(evalString);
       setAngka(hasil || String(0));
@@ -90,6 +90,8 @@ function Calculator() {
     const tampilinResult = () => {
       setAngka(item.result)
       setOutput('')
+      setCheck(true)
+      setCond(true)
     }
     return (
               <div onClick={tampilinResult} key={index} className="text-white flex w-full hover:bg-sky-600 transition-all flex-row-reverse h-fit gap-2 font-serif cursor-pointer">
@@ -102,8 +104,8 @@ function Calculator() {
   }) : <p>There are no recent activity yet</p>
   return (
     <>
-      <main className='m-auto flex relative max-md:h-fit max-h-[340px] max-md:flex-col '>
-        <div className="calculator rounded-l-lg max-md:rounded-t-lg">
+      <main className='m-auto flex shadow-lg shadow-sky-400 relative max-md:h-fit max-md:flex-col '>
+        <div className="calculator rounded-l-lg max-md:rounded-t-lg max-md:rounded-b-none">
           <div className=" flex flex-col w-full">
             <div className="formulaScreen">{output}</div>
             <div id="display">{angka}</div>
@@ -133,7 +135,7 @@ function Calculator() {
             }} id='equal'>=</button>
           </div>
         </div>
-        <div className=" bg-[#395e9b] text-gray-300 flex flex-col min-w-[200px] overflow-y-scroll pr-2 pt-2 rounded-r-lg">
+        <div className=" bg-[#395e9b] text-gray-300 rounded-r-lg max-md:min-h-[200px] max-md:rounded-t-none max-md:rounded-b-lg flex flex-col max-h-[340px] min-w-[200px] overflow-y-scroll pr-2 pt-2 md:pr-3 ">
           {displayRecent}
         </div>
       </main>
