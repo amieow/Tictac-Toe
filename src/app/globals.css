@@ -2,13 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: rgb(144, 236, 221) !important;
+}
 
 * {
   margin: 0;
   padding: 0;
   font-family: digital;
 }
-.full {
+body {
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -17,11 +20,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto;
   flex-direction: column;
-  background-color: rgb(57, 94, 155);
+  background-color: #395e9b;
   padding: 10px;
-  border-radius: 10px;
   height: 340px;
   min-width: 320px;
 }
@@ -81,8 +82,7 @@ button:active {
   padding-right: 4px;
 }
 #display {
-   background-color:darkgray;
-   color: white;
+  color: aliceblue;
   text-align: right;
   font-size: 1.1rem;
   width: 100%;

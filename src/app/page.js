@@ -3,54 +3,111 @@
 import { useState } from "react";
 
 function Calculator() {
-  const [angka,setAngka] = useState("0");
+  const [angka, setAngka] = useState("0");
   const [output, setOutput] = useState("");
-  const [check,setCheck] = useState(false);
-  const [cond,setCond] = useState(true)
+  const [check, setCheck] = useState(false);
+  const [cond, setCond] = useState(true);
+  const [recent, setRecent] = useState([])
   const controlInput = (angkas) => {
-    if (angka === "0" || check == false) {
-      setAngka(angkas)
-    }else {
-      if(!cond){
-        setOutput('')
-        setAngka(angkas)
-      }else {
-        setAngka(angka + angkas)
+    if (angka === "0" || !check) {
+      if (angkas === '.') {
+        setAngka(angka + angkas);
+        setCheck(false);
+        return;
+      } else {
+        setAngka(angkas);
       }
+      if (!cond) {
+        setOutput('');
+      }
+      setCheck(true);
+    } else {
+      if (!cond) {
+        setOutput('');
+        setAngka(angkas);
+      } else {
+        setAngka(angka + angkas);
+      }
+      setCheck(true);
     }
-    setCheck(true)
-    setCond(true)
-  }
+    setCond(true);
+  };
+
   const controlOperation = (oper) => {
-    if(check){
-      if(!cond){
+    if (check) {
+      if (!cond) {
         setOutput(oper);
-        setAngka(oper)
-        setCheck(false)
-      }else{
-        setOutput(output + angka + oper);
-        setAngka(oper)
-        setCheck(false)
+        setAngka(oper);
+        setCheck(false);
+      } else {
+        if (Number(angka) === 0) {
+          setOutput(oper);
+        } else {
+          setOutput(output + angka + oper);
+        }
+        setAngka(oper);
+        setCheck(false);
       }
-      
-    }else {
-      setAngka(oper)
-      setOutput(output.slice(0,output.length - 1) + oper)
+    } else {
+      setAngka(oper);
+      if (Number(output) === 0) {
+        setOutput('');
+      } else {
+        setOutput(output.slice(0, output.length - 1) + oper);
+      }
     }
-  }
+  };
+
   const results = () => {
-    if(cond){
-      setOutput(output + angka)
-      setAngka(eval(output + angka) || String(0))
-      setCond(false)
+    if (cond && check) {
+      let evalString = output + angka;
+      const firstChar = evalString.charAt(0);
+      const operators = ['+', '-', '*', '/'];
+      if (operators.includes(firstChar)) {
+        evalString = '0' + evalString; // Tambahkan angka 0 di awal string
+      }
+      const hasil = eval(evalString);
+
+      const formattedResult = Number(hasil).toLocaleString('id-ID', {
+        minimumFractionDigits: 3,
+        maximumFractionDigits: 4,
+      });
+      const resultDisplay = formattedResult.replace(/,?0+$/, ''); 
+
+      const arrays = {
+        operation: evalString,
+        resultDisplay: resultDisplay,
+        result: hasil,
+      };
+      recent.push(arrays);
+
+      setOutput(evalString);
+      setAngka(hasil || String(0));
+      setCond(false);
     }
-  }
+  };
+  const displayRecent = recent.length > 0 ? recent.map((item,index) => {
+    const tampilinResult = () => {
+      setAngka(item.result)
+      setOutput('')
+    }
+    return (
+              <div onClick={tampilinResult} key={index} className="text-white flex w-full hover:bg-sky-600 transition-all flex-row-reverse h-fit gap-2 font-serif cursor-pointer">
+                <div className="flex flex-col">
+                  <p className=" font-extralight text-sm opacity-80 text-right text-gray-300">{item.operation}</p>
+                  <p className=" text-xl text-right">{item.resultDisplay}</p>
+                </div>
+              </div>
+            )
+  }) : <p>There are no recent activity yet</p>
   return (
     <>
-      <main className='full'>
-        <div className="calculator">
-          <div className="formulaScreen">{output}</div>
-          <div id="display">{angka}</div>
+      <main className='m-auto flex relative max-md:h-fit max-h-[340px] max-md:flex-col '>
+        <div className="calculator rounded-l-lg max-md:rounded-t-lg">
+          <div className=" flex flex-col w-full">
+            <div className="formulaScreen">{output}</div>
+            <div id="display">{angka}</div>
+          </div>
           <div className='button'>
             <button onClick={() => {
               setAngka("0");
@@ -75,6 +132,9 @@ function Calculator() {
               results();
             }} id='equal'>=</button>
           </div>
+        </div>
+        <div className=" bg-[#395e9b] text-gray-300 flex flex-col min-w-[200px] overflow-y-scroll pr-2 pt-2 rounded-r-lg">
+          {displayRecent}
         </div>
       </main>
     </>
