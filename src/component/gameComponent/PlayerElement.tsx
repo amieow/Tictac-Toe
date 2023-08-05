@@ -38,7 +38,7 @@ export function PlayerElement({
       winnings === 0 || isAnimating
          ? playWithBot && playerNumber == 2 ? "bot" : `player ${playerNumber}`
          : dks !== undefined && dks
-         ? playWithBot && playerNumber == 1 ? "bot Win" : `player ${winnings} win`
+         ? playWithBot && winnings == 2 ? "bot Win" : `You win`
          : winnings === playerNumber
          ? "You Win"
          : "You Lose";

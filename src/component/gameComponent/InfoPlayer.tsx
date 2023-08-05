@@ -21,15 +21,15 @@ export const InfoPlayer = ({ player = 0,state,dekstop,isAnimating,playWithBot }:
          }}
          className={`ml-auto backdrop-blur-md`}
       >
-         <ul className={`${player === 1 ? 'ml-auto' : 'mr-auto rotate-180'} text-lg sm:text-2xl text-white rounded-t-lg w-40 bg-gray-800 bg-opacity-70 p-1 divide-y-2 divide-gray-500`}>
+         <ul className={`${player === 1 ? 'ml-auto' : 'mr-auto rotate-180'} text-lg sm:text-2xl text-white rounded-t-lg w-36 sm:w-40 bg-gray-800 bg-opacity-70 p-1 divide-y-2 divide-gray-500`}>
          <li className='flex justify-between text-red-500'>
             <p className='flex gap-1'><BadgeAlert className='my-auto' />INFO</p>
             <button onClick={() => setShow((prv) => !prv)} className=' px-2'><X size={24} /></button>
          </li>
          {info.map((item, index) => {
             const bgLi = (dekstop ? playWithBot ? player == index + 1 : turn == index + 1 : player == index + 1)
-               ? `bg-sky-400 bg-opacity-80 ${
-                     playWithBot && turn == 2 && "bg-opacity-30"
+               ? `bg-sky-400 ${
+                     playWithBot && turn == 2 ? "bg-opacity-30" : "bg-opacity-80"
                   }`
                : playWithBot && turn == 2 && " bg-violet-800";
             return (

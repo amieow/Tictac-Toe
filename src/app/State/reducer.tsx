@@ -99,7 +99,7 @@ export const REDUCER = (state: STATE, action: ACTIONType): STATE => {
       const nexTurn = lastStoryIndex >= 0 ? state.story[lastStoryIndex] : null;
          return {
             ...state,
-            turn : state.sumTurn + 1 == 9 || Boolean(state.winnings) ? 0 : nexTurn?.turn == 1 ? 2 : 1,
+            turn : state.sumTurn + 1 == 10 || Boolean(state.winnings) ? 0 : nexTurn?.turn == 1 ? 2 : 1,
          }
       }
       case ACTIONS.RESET_ARRAY : {

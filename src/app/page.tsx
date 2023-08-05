@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 function MainPage() {
    const [state, dispatch] = useReducer(REDUCER, INITIAL_STATE);
-   const [isMenu,setMenu] = useState(false)
+   const [isMenu,setMenu] = useState(true)
    const [playWithBot,setPlayWith] = useState(false)
    const changePlayed =(bol : boolean) => {
       setPlayWith(bol)

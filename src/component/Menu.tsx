@@ -15,7 +15,7 @@ export default function Menu({change} : {change : (bol : boolean) => void}) {
             whileTap={{ scale : 0.9}}
             key={index}
             onClick={() => change(Boolean(index))}
-            className=" bg-white bg-opacity-25 font-bold text-lg hover:bg-opacity-50 py-2 h-20 rounded-xl"
+            className=" bg-white tracking-widest bg-opacity-25 font-bold text-lg hover:bg-opacity-50 py-2 h-20 rounded-xl"
             >
                {itm}
             </motion.button>
