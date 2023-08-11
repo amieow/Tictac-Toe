@@ -1,8 +1,11 @@
 
+import { Metadata } from 'next'
 import './globals.css'
-export const metadata = {
+export const metadata : Metadata = {
   title: 'Tictac Toe',
-  description: 'Tictac Toe made by <a href="https://github.com/amieow">Amieow</a>',
+  description: 'Tictac Toe made by amieow',
+  keywords : ["tictac", "tictac toe sederhana","tictac toe with frame motion","tictac toe made by amieow","tictac toe with next js 13 app directory"],
+  creator : "amieowqiqi123@gmail.com"
 }
 
 export default function RootLayout({
