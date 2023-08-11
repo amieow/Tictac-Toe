@@ -5,7 +5,10 @@ export const metadata : Metadata = {
   title: 'Tictac Toe',
   description: 'Tictac Toe made by amieow',
   keywords : ["tictac", "tictac toe sederhana","tictac toe with frame motion","tictac toe made by amieow","tictac toe with next js 13 app directory"],
-  creator : "amieowqiqi123@gmail.com"
+  creator : "amieowqiqi123@gmail.com",
+  other : {
+    "google-site-verification" : "4EJqcDTqRoTELldGpThZWadjFHl5dX9Qs7THbjKMbL0"
+  }
 }
 
 export default function RootLayout({
@@ -15,7 +18,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      
+      <head>
+      </head>
       <body className=' flex min-h-screen' >
         {children}
         </body>
